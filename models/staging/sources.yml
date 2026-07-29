@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: clima_raw
+    description: "Dados brutos de clima coletados pela API Visual Crossing e armazenados no S3."
+
+    database: AwsDataCatalog
+    schema: landing
+
+    tables:
+      - name: projeto_clima_dbtpos
+        description: "Dados meteorológicos brutos coletados diariamente."
+
+        columns:
+          - name: latitude
+            description: "Latitude da localização consultada."
+
+          - name: longitude
+            description: "Longitude da localização consultada."
+
+          - name: resolvedaddress
+            description: "Endereço resolvido pela API Visual Crossing."
+
+          - name: address
+            description: "Nome resumido da cidade."
+
+          - name: timezone
+            description: "Fuso horário da localização."
+
+          - name: days
+            description: "Array contendo a previsão diária retornada pela API."
+
+          - name: stations
+            description: "Estações meteorológicas utilizadas pela API."
+
+          - name: partition_0
+            description: "Partição criada pelo particionamento do S3."
+
+          - name: date
+            description: "Data de ingestão do arquivo."

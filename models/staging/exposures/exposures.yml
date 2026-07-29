@@ -1,0 +1,28 @@
+version: 2
+
+exposures:
+
+  - name: dashboard_clima
+    label: Dashboard Executivo de Clima
+    type: dashboard
+
+    maturity: high
+
+    url: https://app.powerbi.com/
+
+    description: >
+      Dashboard executivo desenvolvido no Power BI para análise
+      das previsões meteorológicas por cidade.
+
+    depends_on:
+      - ref('clima_cidade')
+
+    owner:
+      name: Forlan Paiva
+      email: forlan@email.com
+
+    tags:
+      - powerbi
+      - analytics
+      - dashboard
+    

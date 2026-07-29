@@ -1,0 +1,98 @@
+version: 2
+
+models:
+  - name: stg_clima
+    description: >
+      Modelo de staging responsável por tratar e padronizar os dados
+      meteorológicos provenientes da API Visual Crossing.
+
+    meta:
+      owner: Forlan Paiva
+      camada: staging
+      dominio: clima
+      frequencia_atualizacao: diaria
+
+    columns:
+
+      - name: cidade
+        description: Nome da cidade.
+        tests:
+          - not_null
+
+      - name: data_previsao
+        description: Data da previsão.
+        tests:
+          - not_null
+
+      - name: temperatura_maxima
+        description: Temperatura máxima prevista.
+        tests:
+          - not_null
+
+      - name: temperatura_minima
+        description: Temperatura mínima prevista.
+        tests:
+          - not_null
+
+      - name: temperatura_media
+        description: Temperatura média prevista.
+
+      - name: sensacao_termica
+        description: Sensação térmica média.
+
+      - name: umidade
+        description: Umidade relativa do ar.
+
+      - name: precipitacao
+        description: Volume de precipitação previsto.
+
+      - name: probabilidade_precipitacao
+        description: Probabilidade de precipitação.
+
+      - name: velocidade_vento
+        description: Velocidade média do vento.
+
+      - name: rajada_vento
+        description: Velocidade máxima das rajadas.
+
+      - name: direcao_vento
+        description: Direção predominante do vento.
+
+      - name: pressao_atmosferica
+        description: Pressão atmosférica.
+
+      - name: cobertura_nuvens
+        description: Percentual de cobertura de nuvens.
+
+      - name: visibilidade
+        description: Visibilidade.
+
+      - name: radiacao_solar
+        description: Radiação solar.
+
+      - name: indice_uv
+        description: Índice de radiação ultravioleta.
+
+      - name: condicao_climatica
+        description: Condição climática resumida.
+
+      - name: descricao_clima
+        description: Descrição detalhada da condição climática.
+
+      - name: icone_clima
+        description: Ícone representativo da condição climática.
+
+      - name: latitude
+        description: Latitude da localidade.
+
+      - name: longitude
+        description: Longitude da localidade.
+
+      - name: timezone
+        description: Fuso horário da localidade.
+
+      - name: endereco_resolvido
+        description: Endereço retornado pela API.
+
+      - name: data_ingestao
+        description: Data e hora da ingestão dos dados.

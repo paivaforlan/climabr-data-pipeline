@@ -1,0 +1,93 @@
+version: 2
+
+models:
+
+  - name: dim_localidade
+    description: >
+      Dimensão contendo informações únicas das localidades
+      consultadas pela API Visual Crossing.
+
+    meta:
+      owner: Forlan Paiva
+      camada: dimensao
+      dominio: clima
+      frequencia_atualizacao: diaria
+
+    columns:
+
+      - name: id_localidade
+        description: Chave substituta da dimensão.
+        tests:
+          - unique
+          - not_null
+
+      - name: cidade
+        description: Nome da cidade.
+        tests:
+          - unique
+          - not_null
+
+      - name: endereco_resolvido
+        description: Endereço completo retornado pela API.
+
+      - name: latitude
+        description: Latitude da cidade.
+
+      - name: longitude
+        description: Longitude da cidade.
+
+      - name: timezone
+        description: Fuso horário da cidade.
+
+
+  - name: dim_tempo
+    description: >
+      Dimensão calendário utilizada para análises temporais
+      das previsões meteorológicas.
+
+    meta:
+      owner: Forlan Paiva
+      camada: dimensao
+      dominio: tempo
+      frequencia_atualizacao: diaria
+
+    columns:
+
+      - name: id_tempo
+        description: Chave substituta da dimensão.
+        tests:
+          - unique
+          - not_null
+
+      - name: data_previsao
+        description: Data da previsão.
+        tests:
+          - unique
+          - not_null
+
+      - name: ano
+        description: Ano da previsão.
+
+      - name: mes
+        description: Número do mês.
+
+      - name: dia
+        description: Dia do mês.
+
+      - name: semana
+        description: Semana do ano.
+
+      - name: nome_mes
+        description: Nome do mês.
+
+      - name: trimestre
+        description: Trimestre do ano.
+
+      - name: dia_semana
+        description: Nome do dia da semana.
+
+      - name: numero_dia_semana
+        description: Número do dia da semana.
+
+      - name: fim_de_semana
+        description: Indica se a data pertence ao final de semana.

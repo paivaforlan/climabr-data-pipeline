@@ -1,0 +1,78 @@
+version: 2
+
+models:
+
+  - name: clima_cidade
+
+    description: >
+      Tabela analítica consolidada contendo informações meteorológicas
+      por cidade e data, preparada para consumo em ferramentas de BI.
+
+    meta:
+      owner: Forlan Paiva
+      camada: analytics
+      dominio: clima
+      frequencia_atualizacao: diaria
+
+    columns:
+
+      - name: cidade
+        description: Cidade da previsão meteorológica.
+        tests:
+          - not_null
+
+      - name: data_previsao
+        description: Data referente à previsão climática.
+        tests:
+          - not_null
+
+      - name: ano
+        description: Ano da previsão.
+
+      - name: mes
+        description: Número do mês da previsão.
+
+      - name: nome_mes
+        description: Nome do mês da previsão.
+
+      - name: trimestre
+        description: Trimestre do ano.
+
+      - name: temperatura_maxima
+        description: Temperatura máxima prevista em graus Celsius.
+
+      - name: temperatura_minima
+        description: Temperatura mínima prevista em graus Celsius.
+
+      - name: temperatura_media
+        description: Temperatura média prevista.
+
+      - name: sensacao_termica
+        description: Sensação térmica média prevista.
+
+      - name: umidade
+        description: Percentual de umidade relativa do ar.
+
+      - name: precipitacao
+        description: Volume previsto de precipitação.
+
+      - name: probabilidade_precipitacao
+        description: Probabilidade percentual de chuva.
+
+      - name: velocidade_vento
+        description: Velocidade média do vento.
+
+      - name: rajada_vento
+        description: Velocidade máxima das rajadas.
+
+      - name: indice_uv
+        description: Índice ultravioleta.
+
+      - name: condicao_climatica
+        description: Classificação resumida da condição do clima.
+
+      - name: descricao_clima
+        description: Descrição detalhada retornada pela API.
+
+      - name: data_ingestao
+        description: Data em que os dados foram coletados.

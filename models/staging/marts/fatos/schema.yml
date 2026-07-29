@@ -1,0 +1,87 @@
+version: 2
+
+models:
+
+  - name: fato_previsao_clima
+    description: Tabela fato contendo as previsões meteorológicas coletadas para cada localidade e data.
+
+    meta:
+      owner: Forlan Paiva
+      camada: fato
+      dominio: clima
+      frequencia_atualizacao: diaria
+
+    columns:
+
+      - name: id_localidade
+        description: Chave estrangeira que referencia a dimensão de localidades.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_localidade')
+              field: id_localidade
+
+      - name: id_tempo
+        description: Chave da dimensão Tempo.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_tempo')
+              field: id_tempo
+
+      - name: temperatura_maxima
+        description: Temperatura máxima prevista.
+
+      - name: temperatura_minima
+        description: Temperatura mínima prevista.
+
+      - name: temperatura_media
+        description: Temperatura média prevista.
+
+      - name: sensacao_termica
+        description: Sensação térmica média.
+
+      - name: umidade
+        description: Umidade relativa do ar.
+
+      - name: precipitacao
+        description: Volume previsto de precipitação.
+
+      - name: probabilidade_precipitacao
+        description: Probabilidade de chuva.
+
+      - name: velocidade_vento
+        description: Velocidade média do vento.
+
+      - name: rajada_vento
+        description: Velocidade máxima das rajadas.
+
+      - name: direcao_vento
+        description: Direção predominante do vento.
+
+      - name: pressao_atmosferica
+        description: Pressão atmosférica.
+
+      - name: cobertura_nuvens
+        description: Percentual de cobertura de nuvens.
+
+      - name: visibilidade
+        description: Visibilidade média.
+
+      - name: radiacao_solar
+        description: Radiação solar.
+
+      - name: indice_uv
+        description: Índice UV.
+
+      - name: condicao_climatica
+        description: Condição climática resumida.
+
+      - name: descricao_clima
+        description: Descrição detalhada da condição climática.
+
+      - name: icone_clima
+        description: Ícone representativo da condição climática.
+
+      - name: data_ingestao
+        description: Data e hora da ingestão dos dados.
