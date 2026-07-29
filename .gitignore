@@ -1,7 +1,7 @@
 # Python
 .venv/
 __pycache__/
-*.pyc
+*.py[cod]
 
 # dbt
 target/
@@ -11,12 +11,10 @@ logs/
 # VS Code
 .vscode/
 
-# Windows
+# Sistema Operacional
+.DS_Store
 Thumbs.db
 
-# macOS
-.DS_Store
-
-# Environment
+# Arquivos de ambiente
 .env
 profiles.yml
