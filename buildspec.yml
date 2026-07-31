@@ -5,32 +5,33 @@ phases:
   install:
     runtime-versions:
       python: 3.12
-
     commands:
       - pip install dbt-core dbt-athena
 
   pre_build:
-  commands:
-    - echo "=== PRE_BUILD EXECUTANDO ==="
-    - mkdir -p ~/.dbt
-    - ls -la ~
-    - |
-      cat > ~/.dbt/profiles.yml <<EOF
-      clima:
-        target: dev
-        outputs:
-          dev:
-            type: athena
-            database: AwsDataCatalog
-            schema: landing
-            region_name: us-east-1
-            s3_data_dir: s3://projeto-clima-dbtpos/dbt/
-            s3_staging_dir: s3://projeto-clima-dbtpos/athena-results/
-            threads: 4
-      EOF
-    - ls -la ~/.dbt
+    commands:
+      - echo "=== PRE_BUILD EXECUTANDO ==="
+      - mkdir -p ~/.dbt
+      - ls -la ~
+      - |
+        cat > ~/.dbt/profiles.yml <<EOF
+        clima:
+          target: dev
+          outputs:
+            dev:
+              type: athena
+              database: AwsDataCatalog
+              schema: landing
+              region_name: us-east-1
+              s3_data_dir: s3://projeto-clima-dbtpos/dbt/
+              s3_staging_dir: s3://projeto-clima-dbtpos/athena-results/
+              threads: 4
+        EOF
+      - cat ~/.dbt/profiles.yml
+      - ls -la ~/.dbt
 
   build:
     commands:
       - dbt deps
-      - dbt run
+      - dbt debug --profiles-dir ~/.dbt
+      - dbt run --profiles-dir ~/.dbt
