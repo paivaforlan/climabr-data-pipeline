@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+
+    commands:
+      - echo "Instalando dbt..."
+      - pip install --upgrade pip
+      - pip install dbt-core dbt-athena
+
+  build:
+    commands:
+      - echo "Executando dbt..."
+      - dbt deps
+      - dbt run
+      - dbt test
+
+artifacts:
+  files:
+    - '**/*'
