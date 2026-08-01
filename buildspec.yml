@@ -45,10 +45,7 @@ build:
     - cat target/compiled/clima/models/staging/marts/dimensoes/dim_tempo.sql
 
     - echo "===== EXECUTANDO DBT ====="
-    -dbt run --select stg_clima
-
-    -dbt run --select dim_tempo dim_localidade
-
-    -dbt run --select fato_previsao_clima
-
-    -dbt run --select clima_cidade
+    - dbt run --select stg_clima
+    - dbt run --select dim_tempo dim_localidade
+    - dbt run --select fato_previsao_clima
+    - dbt run --select clima_cidade
