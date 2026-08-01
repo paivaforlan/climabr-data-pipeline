@@ -65,6 +65,26 @@ O AWS Glue Crawler identifica automaticamente os arquivos armazenados no S3 e at
 
 ---
 
+# 🔨 AWS CodeBuild
+
+<p align="center">
+  <img src="docs/images/codebuild.png" width="900">
+</p>
+
+O AWS CodeBuild automatiza a execução do dbt sempre que uma nova versão do projeto é enviada ao GitHub.
+
+Durante a execução o serviço:
+
+- instala as dependências do dbt;
+- cria dinamicamente o profiles.yml;
+- executa a compilação dos modelos;
+- executa as transformações do dbt sobre o Amazon Athena;
+- publica as tabelas da camada Analytics.
+
+Esse processo elimina a necessidade de execução manual do dbt, tornando o pipeline totalmente automatizado.
+
+---
+
 # 🎯 Objetivos
 
 - Automatizar a ingestão diária de dados meteorológicos.
@@ -90,6 +110,7 @@ O AWS Glue Crawler identifica automaticamente os arquivos armazenados no S3 e at
 | Agendamento | Amazon EventBridge Scheduler |
 | BI | Power BI |
 | Versionamento | Git + GitHub |
+| CI/CD | AWS CodeBuild |
 
 ---
 
@@ -109,9 +130,8 @@ O AWS Glue Crawler identifica automaticamente os arquivos armazenados no S3 e at
 | Step Functions | ✅ |
 | EventBridge Scheduler | ✅ |
 | GitHub | ✅ |
-| Power BI | 🚧 Em evolução |
-| AWS CodeBuild | ⏳ Próxima etapa |
-
+| CI/CD (AWS CodeBuild) | ✅ |
+| Power BI | 🚧 próxima etapa |
 ---
 
 # 📈 Fluxo do Pipeline
@@ -123,7 +143,7 @@ Visual Crossing API
 AWS Lambda
         │
         ▼
-Amazon S3 (Data Lake)
+Amazon S3
         │
         ▼
 Glue Crawler
@@ -132,10 +152,13 @@ Glue Crawler
 Glue Data Catalog
         │
         ▼
-Amazon Athena
+AWS CodeBuild
         │
         ▼
 dbt Core
+        │
+        ▼
+Amazon Athena
         │
         ▼
 Camada Analytics
@@ -144,6 +167,32 @@ Camada Analytics
 Power BI
 ```
 
+---
+
+# 🚀 Pipeline em Produção
+
+O pipeline encontra-se totalmente operacional e automatizado na AWS.
+
+Fluxo automatizado:
+
+GitHub
+   │
+   ▼
+AWS CodeBuild
+   │
+   ▼
+dbt Core
+   │
+   ▼
+Amazon Athena
+   │
+   ▼
+Camada Analytics
+   │
+   ▼
+Power BI
+
+A integração contínua garante que qualquer alteração enviada ao repositório seja automaticamente compilada e transformada pelo dbt, disponibilizando os dados atualizados para consumo analítico.
 ---
 
 # 📊 Modelagem de Dados
@@ -237,28 +286,33 @@ Toda a execução do pipeline é automatizada utilizando serviços serverless da
 Fluxo:
 
 EventBridge Scheduler
-
-↓
-
+        │
+        ▼
 AWS Step Functions
-
-↓
-
+        │
+        ▼
 AWS Lambda
-
-↓
-
+        │
+        ▼
 Amazon S3
-
-↓
-
+        │
+        ▼
 Glue Crawler
-
-↓
-
-dbt (próxima etapa: AWS CodeBuild)
+        │
+        ▼
+AWS CodeBuild
+        │
+        ▼
+dbt Core
+        │
+        ▼
+Amazon Athena
+        │
+        ▼
+Power BI
 
 ---
+
 
 # 📁 Estrutura do Projeto
 
@@ -281,12 +335,10 @@ climabr-data-pipeline/
 
 # 🚀 Próximas Melhorias
 
-- Implementar AWS CodeBuild para execução automática do dbt.
-- Adicionar documentação da arquitetura.
-- Publicar diagramas da solução.
-- Melhorar o dashboard no Power BI.
-- Criar documentação técnica do pipeline.
-- Adicionar monitoramento e observabilidade.
+- Evoluir o dashboard no Power BI.
+- Implementar dbt Docs para documentação automática.
+- Adicionar monitoramento e alertas do pipeline.
+- Expandir os testes de qualidade dos dados.
 
 ---
 
@@ -298,7 +350,7 @@ Projeto desenvolvido durante a Pós-Graduação em Engenharia de Dados e Intelig
 
 GitHub:
 
-https://github.com/paivaforlan
+**https://github.com/paivaforlan**
 
 ---
 
