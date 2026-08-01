@@ -6,13 +6,14 @@ phases:
     runtime-versions:
       python: 3.12
     commands:
-      - pip install dbt-core dbt-athena
+      - pip install --upgrade pip
+      - pip install dbt-athena==1.11.0
 
   pre_build:
     commands:
       - echo "=== PRE_BUILD EXECUTANDO ==="
       - mkdir -p ~/.dbt
-      - ls -la ~
+
       - |
         cat > ~/.dbt/profiles.yml <<EOF
         clima:
@@ -27,11 +28,27 @@ phases:
               s3_staging_dir: s3://projeto-clima-dbtpos/athena-results/
               threads: 4
         EOF
-      - cat ~/.dbt/profiles.yml
-      - ls -la ~/.dbt
 
-  build:
-    commands:
-      - dbt deps
-      - dbt debug --profiles-dir ~/.dbt
-      - dbt run --profiles-dir ~/.dbt
+      - cat ~/.dbt/profiles.yml
+
+build:
+  commands:
+    - pwd
+    - find . -name "dim_tempo.sql"
+
+    - dbt clean
+    - dbt deps --profiles-dir ~/.dbt
+
+    - dbt compile --profiles-dir ~/.dbt --no-partial-parse
+
+    - echo "===== SQL COMPILADO ====="
+    - cat target/compiled/clima/models/staging/marts/dimensoes/dim_tempo.sql
+
+    - echo "===== EXECUTANDO DBT ====="
+    -dbt run --select stg_clima
+
+    -dbt run --select dim_tempo dim_localidade
+
+    -dbt run --select fato_previsao_clima
+
+    -dbt run --select clima_cidade

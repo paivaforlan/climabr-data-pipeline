@@ -3,6 +3,14 @@
     tags=['mart','dimensao']
 ) }}
 
+with datas as (
+
+    select distinct
+        cast(data_previsao as date) as data_previsao_date
+    from {{ ref('stg_clima') }}
+
+)
+
 select
 
     row_number() over(order by data_previsao_date) as id_tempo,
